@@ -4,6 +4,7 @@ const allNavItems = document.querySelectorAll('.nav__item')
 const navBtnBars = document.querySelector('.burger-btn__bars')
 const allSections = document.querySelectorAll('.section')
 const footerYear = document.querySelector('.footer__year')
+const body = document.querySelector('body')
 
 const handleNav = () => {
 	nav.classList.toggle('nav--active')
@@ -44,8 +45,19 @@ const handleObserver = () => {
 	})
 }
 
+const bodyHidden = () => {
+	if (nav.classList.contains('nav--active')) {
+		body.style.overflow = 'hidden'
+		navBtnBars.classList.remove('black-bars-color')
+	} else if (!nav.classList.contains('nav--active')) {
+		body.style.overflow = 'auto'
+	}
+}
+
 handleCurrentYear()
 
 navBtn.addEventListener('click', handleNav)
 
 window.addEventListener('scroll', handleObserver)
+
+navBtn.addEventListener('click', bodyHidden)
